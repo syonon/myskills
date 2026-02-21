@@ -21,7 +21,9 @@ vercel-labsのskillsを利用する。 サイトから直接コピペできる�
 ## リンク
 
 [skills.sh](https://skills.sh/)
+
 [vercel-labs/skills - GitHub](https://github.com/vercel-labs/skills/)
 
 [superpowers](https://github.com/obra/superpowers)
+
 [everything-claude-code](https://github.com/affaan-m/everything-claude-code)
