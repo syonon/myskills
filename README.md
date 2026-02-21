@@ -8,6 +8,12 @@
 
 vercel-labsのskillsを利用する。 サイトから直接コピペできる　`npx skills add` を利用するため、ディレクトリ構造は `skills`ではなく、 `.agents/skills` を採用。
 
+ホーム配下の`$HOME/.agents/skills`へコピーする場合:
+
+```bash
+./scripts/copy-skills-to-home.sh
+```
+
 ### 日本語ドキュメント
 
 `SKILL.md` ファイルは消費するトークンの都合上英語で運用を行いたい。日本語にした内容は `docs/skills-ja` で管理する。
