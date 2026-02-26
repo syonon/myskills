@@ -6,7 +6,7 @@
 
 ### インストール
 
-vercel-labsのskillsを利用する。 サイトから直接コピペできる　`npx skills add` を利用するため、ディレクトリ構造は `skills`ではなく、 `.agents/skills` を採用。
+vercel-labsのskillsを利用する。 サイトから直接コピペできる　`npx skills add` を利用するため、ディレクトリ構造は `skills`ではなく、 `agents/skills` を採用。
 
 ホーム配下の`$HOME/.agents/skills`へコピーする場合:
 

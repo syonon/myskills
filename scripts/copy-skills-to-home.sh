@@ -3,7 +3,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
-SRC_DIR="${REPO_ROOT}/.agents/skills"
+SRC_DIR="${REPO_ROOT}/agents/skills"
 DEST_DIR="${HOME}/.agents/skills"
 
 if [[ ! -d "${SRC_DIR}" ]]; then
