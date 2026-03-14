@@ -1,35 +1,35 @@
 ---
 name: brainstorming
-description: "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation."
+description: "機能作成、コンポーネント構築、機能追加、振る舞い変更など、あらゆる創造的な作業の前に必ず使う必要があります。実装前に、ユーザーの意図・要件・設計を整理します。"
 ---
 
-# Brainstorming Ideas Into Designs
+# アイデアを設計へと具体化する
 
-Help turn ideas into fully formed designs and specs through natural collaborative dialogue.
+自然で協調的な対話を通じて、アイデアを十分に練られた設計や仕様へと落とし込めるよう支援します。
 
-Start by understanding the current project context, then ask questions one at a time to refine the idea. Once you understand what you're building, present the design and get user approval.
+まず現在のプロジェクトの文脈を理解し、そのうえで質問を1回に1つずつ行い、アイデアを具体化していきます。何を作るのかを十分に理解できたら、設計を提示し、ユーザーの承認を得ます。
 
 <HARD-GATE>
-Do NOT invoke any implementation skill, write any code, scaffold any project, or take any implementation action until you have presented a design and the user has approved it. This applies to EVERY project regardless of perceived simplicity.
+設計を提示してユーザーの承認を得るまでは、いかなる実装系スキルの呼び出し、コードの記述、プロジェクトの雛形作成、実装作業も行ってはいけません。これは、どれほど単純に見えるプロジェクトであっても、すべてに適用されます。
 </HARD-GATE>
 
-## Anti-Pattern: "This Is Too Simple To Need A Design"
+## アンチパターン: 「これは単純すぎて設計はいらない」
 
-Every project goes through this process. A todo list, a single-function utility, a config change — all of them. "Simple" projects are where unexamined assumptions cause the most wasted work. The design can be short (a few sentences for truly simple projects), but you MUST present it and get approval.
+どんなプロジェクトでも、このプロセスを通ります。Todo リスト、単機能のユーティリティ、設定変更、そのすべてです。「単純」なプロジェクトほど、検討されていない前提のせいで無駄な作業が生まれやすくなります。設計自体は短くて構いません。本当に単純なら数文で済むこともありますが、それでも**必ず提示し、承認を得なければなりません**。
 
-## Checklist
+## チェックリスト
 
-You MUST create a task for each of these items and complete them in order:
+以下の各項目について、必ずタスクを作成し、順番に完了させなければなりません。
 
-1. **Explore project context** — check files, docs, recent commits
-2. **Offer visual companion** (if topic will involve visual questions) — this is its own message, not combined with a clarifying question. See the Visual Companion section below.
-3. **Ask clarifying questions** — one at a time, understand purpose/constraints/success criteria
-4. **Propose 2-3 approaches** — with trade-offs and your recommendation
-5. **Present design** — in sections scaled to their complexity, get user approval after each section
-6. **Write design doc** — save to `docs/exec-plans/YYYYMMDD-<feature-name>.md` and commit
-7. **Transition to implementation** — invoke writing-plans skill to create implementation plan
+1. **プロジェクトの文脈を調査する** — ファイル、ドキュメント、最近のコミットを確認する
+2. **ビジュアル補助を提案する**（視覚的な検討を含む場合）— これは独立したメッセージとして送ること。確認質問と同じメッセージにしてはいけません。詳細は後述の「Visual Companion」セクションを参照してください
+3. **確認質問をする** — 1回に1つずつ、目的・制約・成功条件を理解する
+4. **2〜3個のアプローチを提案する** — トレードオフと推奨案を示す
+5. **設計を提示する** — 複雑さに応じた粒度でセクション分けし、各セクションごとにユーザーの承認を得る
+6. **設計ドキュメントを書く** — `docs/exec-plans/YYYYMMDD-<feature-name>.md` に保存し、コミットする
+7. **実装へ移行する** — `writing-plans` スキルを呼び出して実装計画を作成する
 
-## Process Flow
+## プロセスフロー
 
 ```dot
 digraph brainstorming {
@@ -51,66 +51,66 @@ digraph brainstorming {
 }
 ```
 
-**The terminal state is invoking writing-plans.** Do NOT invoke frontend-design, mcp-builder, or any other implementation skill. The ONLY skill you invoke after brainstorming is writing-plans.
+**最終到達点は `writing-plans` の呼び出しです。** `frontend-design`、`mcp-builder`、その他の実装系スキルを呼び出してはいけません。ブレインストーミングの次に呼び出せる唯一のスキルは `writing-plans` です。
 
-## The Process
+## プロセス
 
-**Understanding the idea:**
+**アイデアを理解する:**
 
-- Check out the current project state first (files, docs, recent commits)
-- Before asking detailed questions, assess scope: if the request describes multiple independent subsystems (e.g., "build a platform with chat, file storage, billing, and analytics"), flag this immediately. Don't spend questions refining details of a project that needs to be decomposed first.
-- If the project is too large for a single spec, help the user decompose into sub-projects: what are the independent pieces, how do they relate, what order should they be built? Then brainstorm the first sub-project through the normal design flow. Each sub-project gets its own spec → plan → implementation cycle.
-- For appropriately-scoped projects, ask questions one at a time to refine the idea
-- Prefer multiple choice questions when possible, but open-ended is fine too
-- Only one question per message - if a topic needs more exploration, break it into multiple questions
-- Focus on understanding: purpose, constraints, success criteria
+- まず現在のプロジェクトの状態を確認する（ファイル、ドキュメント、最近のコミット）
+- 詳細な質問に入る前に、スコープを見極める。もし依頼が複数の独立したサブシステムを含んでいる場合（例: 「チャット、ファイル保存、課金、分析機能を持つプラットフォームを作る」）、その時点で即座に指摘する。先に分解すべきプロジェクトの詳細を、質問でそのまま詰めてはいけません
+- プロジェクトが1つの仕様書に収まらないほど大きい場合は、サブプロジェクトへの分解を支援する。独立した構成要素は何か、それらはどう関係するか、どの順序で作るべきかを整理する。その後、最初のサブプロジェクトについて通常の設計フローでブレインストーミングする。各サブプロジェクトは、それぞれ独自の「仕様 → 計画 → 実装」のサイクルを持ちます
+- 適切なスコープに収まっている場合は、質問を1回に1つずつ行い、アイデアを具体化する
+- 可能なら多肢選択式の質問を優先するが、自由回答でも構いません
+- 1つのメッセージにつき質問は1つだけにする。さらに掘り下げが必要な場合は、複数のメッセージに分ける
+- 理解の焦点は、目的・制約・成功条件に置く
 
-**Exploring approaches:**
+**アプローチを検討する:**
 
-- Propose 2-3 different approaches with trade-offs
-- Present options conversationally with your recommendation and reasoning
-- Lead with your recommended option and explain why
+- トレードオフ付きで、2〜3通りの異なるアプローチを提案する
+- 選択肢は会話的に提示し、推奨案とその理由も伝える
+- まず推奨案を先に示し、その理由を説明する
 
-**Presenting the design:**
+**設計を提示する:**
 
-- Once you believe you understand what you're building, present the design
-- Scale each section to its complexity: a few sentences if straightforward, up to 200-300 words if nuanced
-- Ask after each section whether it looks right so far
-- Cover: architecture, components, data flow, error handling, testing
-- Be ready to go back and clarify if something doesn't make sense
+- 何を作るのか十分に理解できたと判断したら、設計を提示する
+- 各セクションの長さは複雑さに応じて調整する。単純なら数文、ニュアンスが多い場合でも 200〜300 語程度までに収める
+- 各セクションのあとで、「ここまでで問題ないか」をユーザーに確認する
+- 扱う内容: アーキテクチャ、コンポーネント、データフロー、エラーハンドリング、テスト
+- 不明点が出た場合は、必要に応じて前段に戻って確認し直す
 
-**Design for isolation and clarity:**
+**分離性と明確さを重視して設計する:**
 
-- Break the system into smaller units that each have one clear purpose, communicate through well-defined interfaces, and can be understood and tested independently
-- For each unit, you should be able to answer: what does it do, how do you use it, and what does it depend on?
-- Can someone understand what a unit does without reading its internals? Can you change the internals without breaking consumers? If not, the boundaries need work.
-- Smaller, well-bounded units are also easier for you to work with - you reason better about code you can hold in context at once, and your edits are more reliable when files are focused. When a file grows large, that's often a signal that it's doing too much.
+- システムは、役割が明確に1つに定まり、よく定義されたインターフェースを通じて連携し、独立して理解・テストできる小さな単位へ分割する
+- 各単位について、次の3点に答えられるようにする: 何をするのか、どう使うのか、何に依存するのか
+- ある単位の内部実装を読まなくても、その役割が理解できるか。内部実装を変えても利用側を壊さずに済むか。もしそうでないなら、境界の引き方を見直す必要があります
+- 小さく境界が明確な単位の方が、作業もしやすくなります。一度に把握できる範囲のコードの方が推論しやすく、焦点の定まったファイルほど編集の信頼性も高まります。ファイルが大きくなりすぎている場合は、多くの責務を抱えすぎているサインであることがよくあります
 
-**Working in existing codebases:**
+**既存コードベースで作業する場合:**
 
-- Explore the current structure before proposing changes. Follow existing patterns.
-- Where existing code has problems that affect the work (e.g., a file that's grown too large, unclear boundaries, tangled responsibilities), include targeted improvements as part of the design - the way a good developer improves code they're working in.
-- Don't propose unrelated refactoring. Stay focused on what serves the current goal.
+- 変更案を出す前に、現在の構成を調査する。既存のパターンに従う
+- 現在の作業に影響する既存コード上の問題（例: ファイルが肥大化している、責務の境界が不明瞭、関心事が絡み合っている）がある場合は、設計の一部として必要最小限の改善を含める。これは、良い開発者が作業対象のコードを改善するのと同じ考え方です
+- 無関係なリファクタリングは提案しない。現在の目的に資する範囲に集中する
 
-## After the Design
+## 設計のあと
 
-**Documentation:**
+**ドキュメント化:**
 
-- Write the validated design (spec) to `docs/exec-plans/YYYYMMDD-<feature-name>.md`
-  - (User preferences for spec location override this default)
-- Use elements-of-style:writing-clearly-and-concisely skill if available
-- Commit the design document to git in Japanese, following the Conventional Commits specification.
+- 検証済みの設計（仕様）を `docs/exec-plans/YYYYMMDD-<feature-name>.md` に書く
+  - （仕様書の保存場所に関するユーザーの希望がある場合は、こちらよりそちらを優先する）
+- 利用可能なら、`elements-of-style:writing-clearly-and-concisely` スキルを使う
+- 設計ドキュメントは、日本語の Conventional Commits に従って git にコミットする
 
-**Implementation:**
+**実装:**
 
-- Invoke the writing-plans skill to create a detailed implementation plan
-- Do NOT invoke any other skill. writing-plans is the next step.
+- `writing-plans` スキルを呼び出して、詳細な実装計画を作成する
+- それ以外のスキルは呼び出してはいけません。次のステップは `writing-plans` です
 
-## Key Principles
+## 主要な原則
 
-- **One question at a time** - Don't overwhelm with multiple questions
-- **Multiple choice preferred** - Easier to answer than open-ended when possible
-- **YAGNI ruthlessly** - Remove unnecessary features from all designs
-- **Explore alternatives** - Always propose 2-3 approaches before settling
-- **Incremental validation** - Present design, get approval before moving on
-- **Be flexible** - Go back and clarify when something doesn't make sense
+- **質問は1回に1つ** - 複数の質問をまとめて投げて圧倒しない
+- **可能なら多肢選択を優先** - 自由回答よりも答えやすい
+- **YAGNI を徹底する** - すべての設計から不要な機能を削る
+- **代替案を検討する** - 必ず 2〜3 個のアプローチを提示してから絞り込む
+- **段階的に検証する** - 設計を提示し、承認を得てから先へ進む
+- **柔軟であること** - 何か噛み合わなければ、前に戻って明確化する
