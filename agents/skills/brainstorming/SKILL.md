@@ -25,30 +25,36 @@ description: "機能作成、コンポーネント構築、機能追加、振る
 2. **ビジュアル補助を提案する**（視覚的な検討を含む場合）— これは独立したメッセージとして送ること。確認質問と同じメッセージにしてはいけません。詳細は後述の「Visual Companion」セクションを参照してください
 3. **確認質問をする** — 1回に1つずつ、目的・制約・成功条件を理解する
 4. **2〜3個のアプローチを提案する** — トレードオフと推奨案を示す
-5. **設計を提示する** — 複雑さに応じた粒度でセクション分けし、各セクションごとにユーザーの承認を得る
+5. **設計を提示する** — 複雑さに応じた粒度でセクション分けして説明し、必要な論点を確認する
 6. **設計ドキュメントを書く** — `docs/exec-plans/YYYYMMDD-<feature-name>.md` に保存し、コミットする
-7. **実装へ移行する** — `writing-plans` スキルを呼び出して実装計画を作成する
+7. **設計をレビューする** - `ask-codex`　スキルを呼び出してレビュー・相談ループを回す
+8. **ユーザーの承認を得る** — レビュー反映後の設計を提示し、最終承認を得る
+9. **実装へ移行する** — `writing-plans` スキルを呼び出して実装計画を作成する
 
 ## プロセスフロー
 
-```dot
-digraph brainstorming {
-    "Explore project context" [shape=box];
-    "Ask clarifying questions" [shape=box];
-    "Propose 2-3 approaches" [shape=box];
-    "Present design sections" [shape=box];
-    "User approves design?" [shape=diamond];
-    "Write design doc" [shape=box];
-    "Invoke writing-plans skill" [shape=doublecircle];
+```mermaid
+flowchart TD
+    A[Explore project context]
+    B[Ask clarifying questions]
+    C[Propose 2-3 approaches]
+    D[Present design sections]
+    E[Write design doc]
+    F[Review design with ask-codex]
+    G{Review requires changes?}
+    H{User approves design?}
+    I((Invoke writing-plans skill))
 
-    "Explore project context" -> "Ask clarifying questions" [label="no"];
-    "Ask clarifying questions" -> "Propose 2-3 approaches";
-    "Propose 2-3 approaches" -> "Present design sections";
-    "Present design sections" -> "User approves design?";
-    "User approves design?" -> "Present design sections" [label="no, revise"];
-    "User approves design?" -> "Write design doc" [label="yes"];
-    "Write design doc" -> "Invoke writing-plans skill";
-}
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G -- "yes, revise" --> D
+    G -- "no" --> H
+    H -- "no, revise" --> D
+    H -- "yes" --> I
 ```
 
 **最終到達点は `writing-plans` の呼び出しです。** `frontend-design`、`mcp-builder`、その他の実装系スキルを呼び出してはいけません。ブレインストーミングの次に呼び出せる唯一のスキルは `writing-plans` です。
@@ -75,7 +81,7 @@ digraph brainstorming {
 
 - 何を作るのか十分に理解できたと判断したら、設計を提示する
 - 各セクションの長さは複雑さに応じて調整する。単純なら数文、ニュアンスが多い場合でも 200〜300 語程度までに収める
-- 各セクションのあとで、「ここまでで問題ないか」をユーザーに確認する
+- 各セクションでは、理解をそろえるための論点整理と必要最小限の確認に留める
 - 扱う内容: アーキテクチャ、コンポーネント、データフロー、エラーハンドリング、テスト
 - 不明点が出た場合は、必要に応じて前段に戻って確認し直す
 
@@ -98,8 +104,15 @@ digraph brainstorming {
 
 - 検証済みの設計（仕様）を `docs/exec-plans/YYYYMMDD-<feature-name>.md` に書く
   - （仕様書の保存場所に関するユーザーの希望がある場合は、こちらよりそちらを優先する）
-- 利用可能なら、`elements-of-style:writing-clearly-and-concisely` スキルを使う
 - 設計ドキュメントは、日本語の Conventional Commits に従って git にコミットする
+
+**レビューと改善:**
+
+- `ask-codex`スキルを利用して、Codexエージェントにレビューを依頼し、ループを回すこと。
+
+**最終承認:**
+
+- Codexレビューの指摘を反映し終えたあとで、ユーザーに最終版の設計を提示し、承認を得ること。
 
 **実装:**
 
@@ -112,5 +125,5 @@ digraph brainstorming {
 - **可能なら多肢選択を優先** - 自由回答よりも答えやすい
 - **YAGNI を徹底する** - すべての設計から不要な機能を削る
 - **代替案を検討する** - 必ず 2〜3 個のアプローチを提示してから絞り込む
-- **段階的に検証する** - 設計を提示し、承認を得てから先へ進む
+- **段階的に検証する** - 設計を提示して論点を整理し、レビューで磨き、最後に承認を得てから先へ進む
 - **柔軟であること** - 何か噛み合わなければ、前に戻って明確化する
