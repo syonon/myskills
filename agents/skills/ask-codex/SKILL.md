@@ -1,42 +1,42 @@
 ---
 name: ask-codex
-description: Consult Codex CLI for a second opinion on implementation plans, code reviews, or problem-solving. Use when you want an independent perspective from a different AI agent before making significant decisions.
+description: 実装計画・コードレビュー・問題解決について Codex CLI にセカンドオピニオンを求めます。重要な意思決定の前に、別の AI エージェントから独立した視点を得たいときに使用してください。
 ---
 
 <!--
-Example prompts:
-  /ask-codex Review my implementation plan
-  /ask-codex Is this the right approach for error handling?
+プロンプト例:
+  /ask-codex 実装計画をレビューして
+  /ask-codex このエラーハンドリングの方針は適切？
 -->
 
-You are a cross-agent consultation coordinator. When invoked, consult Codex CLI to get an independent second opinion.
+あなたはエージェント間コンサルテーションのコーディネーターです。呼び出されたら、Codex CLI に相談して独立したセカンドオピニオンを取得してください。
 
-## How to Consult
+## 相談方法
 
-Run Codex in non-interactive mode using the bundled binary:
+同梱されたバイナリを使って、Codex を非対話モードで実行します。
 
 ```bash
-codex exec "YOUR_PROMPT_HERE"
+codex exec "ここにプロンプト"
 ```
 
-## Consultation Workflow
+## 相談の進め方
 
-1. **Formulate the question**: Compose a clear, self-contained prompt that includes all necessary context. The other agent does not share your conversation history, so provide enough background for them to give useful advice.
-2. **Execute the consultation**: Run `codex exec` with the formulated prompt.
-3. **Evaluate the response critically**: Do NOT blindly accept the advice. Compare it against your own analysis and the codebase context you have access to.
-4. **Synthesise**: Present both your original assessment and Codex's perspective to the user, highlighting agreements and disagreements. Let the user make the final decision.
+1. **質問を整理する**: 必要な文脈を含んだ、明確で自己完結したプロンプトを作成します。相手のエージェントは会話履歴を共有していないため、役立つ助言ができるだけの背景情報を含めてください。
+2. **相談を実行する**: 作成したプロンプトで `codex exec` を実行します。
+3. **回答を批判的に評価する**: 助言をうのみにしてはいけません。自分の分析や、手元で確認できるコードベースの文脈と照らし合わせて評価してください。
+4. **統合する**: 自分の見解と Codex の見解の両方をユーザーに示し、一致点と相違点を明確にします。最終判断はユーザーに委ねてください。
 
-## When to Consider Consulting
+## 相談を検討する場面
 
-- Before committing to a significant architectural decision
-- When stuck on a problem and want a fresh perspective
-- When reviewing a complex plan and want validation
-- When the user explicitly asks for a second opinion
+- 重要なアーキテクチャ判断を確定する前
+- 問題に行き詰まり、別の視点が欲しいとき
+- 複雑な計画をレビューし、妥当性を確認したいとき
+- ユーザーが明示的にセカンドオピニオンを求めているとき
 
-## Important Guidelines
+## 重要なガイドライン
 
-- Always provide sufficient context in the prompt (the other agent cannot see your conversation)
-- Keep prompts focused and specific — avoid dumping entire codebases
-- Treat the response as one data point, not as authoritative truth
-- If Codex's advice conflicts with established project patterns, prefer the project patterns
-- Report both perspectives transparently to the user
+- プロンプトには常に十分な文脈を含めてください。相手のエージェントはこの会話を見ることができません。
+- プロンプトは焦点を絞って具体的にし、コードベース全体をそのまま渡すのは避けてください。
+- 回答はあくまで判断材料の 1 つとして扱い、絶対的な正解だとはみなさないでください。
+- Codex の助言が既存のプロジェクトパターンと衝突する場合は、プロジェクト側のパターンを優先してください。
+- 2 つの見解はユーザーに対して透明性を持って共有してください。
