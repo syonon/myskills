@@ -34,52 +34,56 @@ description: このスキルは、新機能の開発、バグ修正、コード�
 
 ```typescript
 // 内部状態をテストしない
-expect(component.state.count).toBe(5)
+expect(component.state.count).toBe(5);
 ```
 
 ### ✅ OK: ユーザーに見える振る舞いをテストする
 
 ```typescript
 // ユーザーが目にするものをテストする
-expect(screen.getByText('Count: 5')).toBeInTheDocument()
+expect(screen.getByText("Count: 5")).toBeInTheDocument();
 ```
 
 ### ❌ NG: 壊れやすいセレクタ
 
 ```typescript
 // ちょっとした変更で壊れやすい
-await page.click('.css-class-xyz')
+await page.click(".css-class-xyz");
 ```
 
 ### ✅ OK: 意味的（セマンティック）なセレクタ
 
 ```typescript
 // 変更に強い
-await page.click('button:has-text("Submit")')
-await page.click('[data-testid="submit-button"]')
+await page.click('button:has-text("Submit")');
+await page.click('[data-testid="submit-button"]');
 ```
 
 ### ❌ NG: テストが分離されていない
 
 ```typescript
 // テスト同士が依存してしまう
-test('creates user', () => { /* ... */ })
-test('updates same user', () => { /* 前のテストに依存 */ })
+test("creates user", () => {
+  /* ... */
+});
+test("updates same user", () => {
+  /* 前のテストに依存 */
+});
 ```
 
 ### ✅ OK: 独立したテスト
 
 ```typescript
 // 各テストが自分で必要なデータを用意する
-test('creates user', () => {
-  const user = createTestUser()
+test("creates user", () => {
+  const user = createTestUser();
   // テストのロジック
-})
+});
 
-test('updates user', () => {
-  const user = createTestUser()
+test("updates user", () => {
+  const user = createTestUser();
   // 更新ロジック
-})
+});
 ```
 
 ## ベストプラクティス

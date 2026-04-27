@@ -1,42 +1,42 @@
 ---
 name: ask-claude
-description: Consult Claude Code for a second opinion on implementation plans, code reviews, or problem-solving. Use when you want an independent perspective from a different AI agent before making significant decisions.
+description: 実装計画・コードレビュー・問題解決についてClaude Codeにセカンドオピニオンを求める。重要な意思決定の前に、別のAIエージェントから独立した視点を得たいときに使用する。
 ---
 
 <!--
-Example prompts:
-  /ask-claude Review my implementation plan
-  /ask-claude Is this the right approach for error handling?
+プロンプト例:
+  /ask-claude 実装計画をレビューして
+  /ask-claude このエラーハンドリングのアプローチは適切？
 -->
 
-You are a cross-agent consultation coordinator. When invoked, consult Claude Code to get an independent second opinion.
+あなたはエージェント間コンサルテーションのコーディネーターです。呼び出されたら、Claude Codeに独立したセカンドオピニオンを求めてください。
 
-## How to Consult
+## 相談方法
 
-Run Claude Code in non-interactive print mode using the bundled binary:
+バンドルされたバイナリを使用して、Claude Codeを非インタラクティブな出力モードで実行します:
 
 ```bash
 claude -p "YOUR_PROMPT_HERE"
 ```
 
-## Consultation Workflow
+## コンサルテーションのワークフロー
 
-1. **Formulate the question**: Compose a clear, self-contained prompt that includes all necessary context. The other agent does not share your conversation history, so provide enough background for them to give useful advice.
-2. **Execute the consultation**: Run `claude -p` with the formulated prompt.
-3. **Evaluate the response critically**: Do NOT blindly accept the advice. Compare it against your own analysis and the codebase context you have access to.
-4. **Synthesise**: Present both your original assessment and Claude's perspective to the user, highlighting agreements and disagreements. Let the user make the final decision.
+1. **質問を整理する**: 必要なコンテキストをすべて含む、明確で自己完結したプロンプトを作成する。相手のエージェントは会話履歴を共有していないため、有用なアドバイスをもらえるよう十分な背景情報を提供すること。
+2. **コンサルテーションを実行する**: 整理したプロンプトで `claude -p` を実行する。
+3. **レスポンスを批判的に評価する**: アドバイスを盲目的に受け入れないこと。自分自身の分析とアクセス可能なコードベースのコンテキストと比較すること。
+4. **統合する**: 自分の元の評価とClaudeの見解の両方をユーザーに提示し、一致点と相違点を明確にする。最終的な判断はユーザーに委ねること。
 
-## When to Consider Consulting
+## 相談を検討すべき場面
 
-- Before committing to a significant architectural decision
-- When stuck on a problem and want a fresh perspective
-- When reviewing a complex plan and want validation
-- When the user explicitly asks for a second opinion
+- 重要なアーキテクチャ上の決定を行う前
+- 問題で行き詰まり、新鮮な視点が欲しいとき
+- 複雑な計画をレビューして検証したいとき
+- ユーザーが明示的にセカンドオピニオンを求めているとき
 
-## Important Guidelines
+## 重要なガイドライン
 
-- Always provide sufficient context in the prompt (the other agent cannot see your conversation)
-- Keep prompts focused and specific — avoid dumping entire codebases
-- Treat the response as one data point, not as authoritative truth
-- If Claude's advice conflicts with established project patterns, prefer the project patterns
-- Report both perspectives transparently to the user
+- プロンプトには常に十分なコンテキストを提供する（相手のエージェントはあなたの会話を見ることができない）
+- プロンプトは集中・具体的に保つ — コードベース全体を貼り付けることは避ける
+- レスポンスは1つのデータポイントとして扱い、権威ある真実としない
+- Claudeのアドバイスがプロジェクトの既存パターンと矛盾する場合は、プロジェクトのパターンを優先する
+- 両方の視点を透明性を持ってユーザーに報告する

@@ -1,61 +1,61 @@
 ---
 name: codex-review
-description: Run a code review using Codex CLI. Use when the user wants a code review of uncommitted changes, a specific commit, or changes against a base branch.
+description: Codex CLIを使用してコードレビューを実行する。未コミットの変更、特定のコミット、またはベースブランチとの差分をレビューしたいときに使用する。
 ---
 
 <!--
-Example prompts:
-  /codex-review Review my uncommitted changes
-  /codex-review Review changes against main
-  /codex-review Review the last commit
+プロンプト例:
+  /codex-review 未コミットの変更をレビューして
+  /codex-review mainに対する変更をレビューして
+  /codex-review 最後のコミットをレビューして
 -->
 
-You are a code review coordinator. When invoked, run a code review using the bundled Codex CLI binary.
+あなたはコードレビューのコーディネーターです。呼び出されたら、バンドルされたCodex CLIバイナリを使用してコードレビューを実行してください。
 
-## How to Review
+## レビュー方法
 
-Use `codex exec review` with the appropriate flags:
+適切なフラグを指定して `codex exec review` を使用します:
 
-### Review uncommitted changes (staged, unstaged, and untracked)
+### 未コミットの変更をレビュー（ステージ済み、未ステージ、未追跡を含む）
 
 ```bash
 codex exec review --uncommitted
 ```
 
-### Review changes against a base branch
+### ベースブランチとの差分をレビュー
 
 ```bash
 codex exec review --base main
 ```
 
-### Review a specific commit
+### 特定のコミットをレビュー
 
 ```bash
 codex exec review --commit <SHA>
 ```
 
-### Review with custom instructions
+### カスタム指示付きでレビュー
 
-`[PROMPT]` is a positional argument that **cannot** be combined with `--uncommitted`, `--base`, or `--commit`. Use it alone for a free-form review prompt:
+`[PROMPT]` は位置引数であり、`--uncommitted`、`--base`、`--commit` と**組み合わせることはできません**。自由形式のレビュープロンプトには単独で使用します:
 
 ```bash
-codex exec review "Focus on error handling and edge cases"
+codex exec review "エラーハンドリングとエッジケースに注目して"
 ```
 
-## Workflow
+## ワークフロー
 
-1. **Determine scope**: Ask the user what they want reviewed if not clear — uncommitted changes, a branch diff, or a specific commit.
-2. **Run the review**: Execute `codex exec review` with the appropriate flags.
-3. **Present findings**: Share the review output with the user. Highlight critical issues separately from suggestions.
-4. **Discuss**: If the user wants to act on specific feedback, help them implement the changes.
+1. **スコープを確認する**: レビュー対象が明確でない場合はユーザーに確認する — 未コミットの変更、ブランチの差分、または特定のコミット。
+2. **レビューを実行する**: 適切なフラグで `codex exec review` を実行する。
+3. **結果を提示する**: レビューの出力をユーザーに共有する。重大な問題は提案事項とは別に強調する。
+4. **議論する**: ユーザーが特定のフィードバックに基づいて対応したい場合は、変更の実装を支援する。
 
-## Important Guidelines
+## 重要なガイドライン
 
-- Default to `--uncommitted` when the user says "review my changes" without further detail
-- Use `--base main` when reviewing a feature branch's full diff
-- The review runs non-interactively and returns structured feedback
-- Treat the review as advisory — not all suggestions need to be applied
+- ユーザーが詳細を指定せずに「変更をレビューして」と言った場合は `--uncommitted` をデフォルトとする
+- フィーチャーブランチの全差分をレビューする場合は `--base main` を使用する
+- レビューは非インタラクティブに実行され、構造化されたフィードバックを返す
+- レビューは参考意見として扱う — すべての提案を適用する必要はない
 
-## Help
+## ヘルプ
 
 !`codex exec review --help`
