@@ -5,20 +5,20 @@ description: Python Idioms、PEP 8 standard、型ヒントを利用し堅牢で�
 
 # Python Development Patterns
 
-Idiomatic Python patterns and best practices for building robust, efficient, and maintainable applications.
+堅牢で効率的かつ保守しやすいアプリケーションを構築するための、Pythonらしいパターンとベストプラクティス。
 
-## When to Activate
+## 有効化するタイミング
 
-- Writing new Python code
-- Reviewing Python code
-- Refactoring existing Python code
-- Designing Python packages/modules
+- 新しいPythonコードを書くとき
+- Pythonコードをレビューするとき
+- 既存のPythonコードをリファクタリングするとき
+- Pythonパッケージ／モジュールを設計するとき
 
-## Core Principles
+## 基本原則
 
-### 1. Readability Counts
+### 1. 可読性は重要
 
-Python prioritizes readability. Code should be obvious and easy to understand.
+Pythonは可読性を重視します。コードは明快で、理解しやすいものであるべきです。
 
 ```python
 # Good: Clear and readable
@@ -32,9 +32,9 @@ def get_active_users(u):
     return [x for x in u if x.a]
 ```
 
-### 2. Explicit is Better Than Implicit
+### 2. 暗黙より明示
 
-Avoid magic; be clear about what your code does.
+魔法のような挙動は避け、コードが何をしているかを明確にしましょう。
 
 ```python
 # Good: Explicit configuration
@@ -50,9 +50,9 @@ import some_module
 some_module.setup()  # What does this do?
 ```
 
-### 3. EAFP - Easier to Ask Forgiveness Than Permission
+### 3. EAFP - 許可を得るより、まず実行して必要なら許しを請う
 
-Python prefers exception handling over checking conditions.
+Pythonでは、条件を事前に確認するよりも、例外処理を用いるスタイルが好まれます。
 
 ```python
 # Good: EAFP style
@@ -70,9 +70,9 @@ def get_value(dictionary: dict, key: str) -> Any:
         return default_value
 ```
 
-## Type Hints
+## 型ヒント
 
-### Basic Type Annotations
+### 基本的な型アノテーション
 
 ```python
 from typing import Optional, List, Dict, Any
@@ -88,7 +88,7 @@ def process_user(
     return User(user_id, data)
 ```
 
-### Modern Type Hints (Python 3.9+)
+### モダンな型ヒント（Python 3.9+）
 
 ```python
 # Python 3.9+ - Use built-in types
@@ -102,7 +102,7 @@ def process_items(items: List[str]) -> Dict[str, int]:
     return {item: len(item) for item in items}
 ```
 
-### Type Aliases and TypeVar
+### 型エイリアスとTypeVar
 
 ```python
 from typing import TypeVar, Union
@@ -121,7 +121,7 @@ def first(items: list[T]) -> T | None:
     return items[0] if items else None
 ```
 
-### Protocol-Based Duck Typing
+### Protocolベースのダックタイピング
 
 ```python
 from typing import Protocol
@@ -135,9 +135,9 @@ def render_all(items: list[Renderable]) -> str:
     return "\n".join(item.render() for item in items)
 ```
 
-## Error Handling Patterns
+## エラーハンドリングパターン
 
-### Specific Exception Handling
+### 具体的な例外処理
 
 ```python
 # Good: Catch specific exceptions
@@ -159,7 +159,7 @@ def load_config(path: str) -> Config:
         return None  # Silent failure!
 ```
 
-### Exception Chaining
+### 例外の連鎖
 
 ```python
 def process_data(data: str) -> Result:
@@ -170,7 +170,7 @@ def process_data(data: str) -> Result:
         raise ValueError(f"Failed to parse data: {data}") from e
 ```
 
-### Custom Exception Hierarchy
+### カスタム例外階層
 
 ```python
 class AppError(Exception):
@@ -193,9 +193,9 @@ def get_user(user_id: str) -> User:
     return user
 ```
 
-## Context Managers
+## コンテキストマネージャ
 
-### Resource Management
+### リソース管理
 
 ```python
 # Good: Using context managers
@@ -212,7 +212,7 @@ def process_file(path: str) -> str:
         f.close()
 ```
 
-### Custom Context Managers
+### カスタムコンテキストマネージャー
 
 ```python
 from contextlib import contextmanager
@@ -230,7 +230,7 @@ with timer("data processing"):
     process_large_dataset()
 ```
 
-### Context Manager Classes
+### コンテキストマネージャークラス
 
 ```python
 class DatabaseTransaction:
@@ -254,9 +254,9 @@ with DatabaseTransaction(conn):
     conn.create_profile(user.id, profile_data)
 ```
 
-## Comprehensions and Generators
+## 内包表記とジェネレーター
 
-### List Comprehensions
+### リスト内包表記
 
 ```python
 # Good: List comprehension for simple transformations
@@ -281,7 +281,7 @@ def filter_and_transform(items: Iterable[int]) -> list[int]:
     return result
 ```
 
-### Generator Expressions
+### ジェネレーター式
 
 ```python
 # Good: Generator for lazy evaluation
@@ -291,7 +291,7 @@ total = sum(x * x for x in range(1_000_000))
 total = sum([x * x for x in range(1_000_000)])
 ```
 
-### Generator Functions
+### ジェネレーター関数
 
 ```python
 def read_large_file(path: str) -> Iterator[str]:
@@ -305,9 +305,9 @@ for line in read_large_file("huge.txt"):
     process(line)
 ```
 
-## Data Classes and Named Tuples
+## データクラスと名前付きタプル
 
-### Data Classes
+### データクラス
 
 ```python
 from dataclasses import dataclass, field
@@ -330,7 +330,7 @@ user = User(
 )
 ```
 
-### Data Classes with Validation
+### バリデーション付きデータクラス
 
 ```python
 @dataclass
@@ -347,7 +347,7 @@ class User:
             raise ValueError(f"Invalid age: {self.age}")
 ```
 
-### Named Tuples
+### 名前付きタプル
 
 ```python
 from typing import NamedTuple
@@ -366,9 +366,9 @@ p2 = Point(3, 4)
 print(p1.distance(p2))  # 5.0
 ```
 
-## Decorators
+## デコレ―タ
 
-### Function Decorators
+### 関数デコレ―タ
 
 ```python
 import functools
@@ -392,7 +392,7 @@ def slow_function():
 # slow_function() prints: slow_function took 1.0012s
 ```
 
-### Parameterized Decorators
+### パラメータ付きのデコレ―タ
 
 ```python
 def repeat(times: int):
@@ -414,7 +414,7 @@ def greet(name: str) -> str:
 # greet("Alice") returns ["Hello, Alice!", "Hello, Alice!", "Hello, Alice!"]
 ```
 
-### Class-Based Decorators
+### クラスベースのデコレ―タ
 
 ```python
 class CountCalls:
@@ -436,9 +436,9 @@ def process():
 # Each call to process() prints the call count
 ```
 
-## Concurrency Patterns
+## 並行処理パターン
 
-### Threading for I/O-Bound Tasks
+### I/Oバウンドな処理に対するスレッド
 
 ```python
 import concurrent.futures
@@ -464,7 +464,7 @@ def fetch_all_urls(urls: list[str]) -> dict[str, str]:
     return results
 ```
 
-### Multiprocessing for CPU-Bound Tasks
+### CPUバウンドな処理に対するマルチプロセシング
 
 ```python
 def process_data(data: list[int]) -> int:
@@ -478,7 +478,7 @@ def process_all(datasets: list[list[int]]) -> list[int]:
     return results
 ```
 
-### Async/Await for Concurrent I/O
+### 並行I/OのためのAsync/Await
 
 ```python
 import asyncio
@@ -497,9 +497,9 @@ async def fetch_all(urls: list[str]) -> dict[str, str]:
     return dict(zip(urls, results))
 ```
 
-## Package Organization
+## パッケージ構成
 
-### Standard Project Layout
+### 標準的なプロジェクト構成
 
 ```
 myproject/
@@ -526,7 +526,7 @@ myproject/
 └── .gitignore
 ```
 
-### Import Conventions
+### インポート規約
 
 ```python
 # Good: Import order - stdlib, third-party, local
@@ -544,7 +544,7 @@ from mypackage.utils import format_name
 # pip install isort
 ```
 
-### __init__.py for Package Exports
+### **init**.py for Package Exports
 
 ```python
 # mypackage/__init__.py
@@ -559,9 +559,9 @@ from mypackage.utils import format_name
 __all__ = ["User", "Post", "format_name"]
 ```
 
-## Memory and Performance
+## メモリとパフォーマンス
 
-### Using __slots__ for Memory Efficiency
+### メモリ効率向上のための **slots** の利用
 
 ```python
 # Bad: Regular class uses __dict__ (more memory)
@@ -579,7 +579,7 @@ class Point:
         self.y = y
 ```
 
-### Generator for Large Data
+### 大規模データに対するジェネレータ
 
 ```python
 # Bad: Returns full list in memory
@@ -594,7 +594,7 @@ def read_lines(path: str) -> Iterator[str]:
             yield line.strip()
 ```
 
-### Avoid String Concatenation in Loops
+### ループ内での文字列結合を避ける
 
 ```python
 # Bad: O(n²) due to string immutability
@@ -614,9 +614,9 @@ for item in items:
 result = buffer.getvalue()
 ```
 
-## Python Tooling Integration
+## Pythonツール統合
 
-### Essential Commands
+### 必須コマンド
 
 ```bash
 # Code formatting
@@ -641,7 +641,7 @@ pip-audit
 safety check
 ```
 
-### pyproject.toml Configuration
+### pyproject.toml の設定
 
 ```toml
 [project]
@@ -681,22 +681,22 @@ testpaths = ["tests"]
 addopts = "--cov=mypackage --cov-report=term-missing"
 ```
 
-## Quick Reference: Python Idioms
+## クイックリファレンス: Python Idioms
 
-| Idiom               | Description                                     |
-| ------------------- | ----------------------------------------------- |
-| EAFP                | Easier to Ask Forgiveness than Permission       |
-| Context managers    | Use `with` for resource management              |
-| List comprehensions | For simple transformations                      |
-| Generators          | For lazy evaluation and large datasets          |
-| Type hints          | Annotate function signatures                    |
-| Dataclasses         | For data containers with auto-generated methods |
-| `__slots__`         | For memory optimization                         |
-| f-strings           | For string formatting (Python 3.6+)             |
-| `pathlib.Path`      | For path operations (Python 3.4+)               |
-| `enumerate`         | For index-element pairs in loops                |
+| Idiom            | Description                                    |
+| ---------------- | ---------------------------------------------- |
+| EAFP             | 事前に許可を得るより、許しを請う方が簡単である |
+| Context managers | リソース管理には`with`を使う                   |
+| リスト内包表記   | 簡単な変換処理に使う                           |
+| ジェネレータ     | 遅延評価や大規模データセットに使う             |
+| 型ヒント         | 関数シグネチャに型注釈を付ける                 |
+| データクラス     | メソッド自動生成付きのデータコンテナに使う     |
+| `__slots__`      | メモリ最適化に使う                             |
+| f-strings        | 文字列フォーマットに使う                       |
+| `pathlib.Path`   | パス操作に使う                                 |
+| `enumerate`      | ループでインデックスと要素の組を扱うために使う |
 
-## Anti-Patterns to Avoid
+## 避けるべきアンチパターン
 
 ```python
 # Bad: Mutable default arguments
@@ -746,4 +746,4 @@ except SpecificError as e:
     logger.error(f"Operation failed: {e}")
 ```
 
-__Remember__: Python code should be readable, explicit, and follow the principle of least surprise. When in doubt, prioritize clarity over cleverness.
+注意: Pythonコードは、可読性が高く、明示的であり、最小驚愕の原則に従うべきです。迷ったときは、巧妙さよりも明快さを優先してください。
