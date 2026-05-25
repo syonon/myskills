@@ -13,7 +13,7 @@ description: 仕様や要件があり、コードに手を付ける前の複数�
 
 **開始時に次を明言すること:** "writing-plans skillを使用して、実装計画を作成します。"
 
-**保存先:** `docs/exec-plans/YYYYMMDD-<feature-name>.md`
+**保存先:** `docs/work/exec-plans/YYYYMMDD-<feature-name>.md`
 
 ## スコープ確認
 
@@ -106,7 +106,7 @@ description: 仕様や要件があり、コードに手を付ける前の複数�
 
 計画を保存したら、次を伝えます。
 
-**"実装計画を作成しました。 `docs/exec-plans/active/<filename>.md`."**
+**"実装計画を作成しました。 `docs/work/exec-plans/active/<filename>.md`."**
 
 ## 出力スタイル
 
