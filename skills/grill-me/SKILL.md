@@ -1,5 +1,5 @@
 ---
-description: Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions "grill me".
+description: 計画や設計について、共通認識に到達するまでユーザーへ徹底的に質問し、意思決定ツリーの各分岐を一つずつ解決する。ユーザーが計画を厳しく検証したい場合、設計について徹底的な追及を受けたい場合、または「grill me」と言及した場合に使用する。
 metadata:
     github-path: skills/productivity/grill-me
     github-ref: 733d312884b3878a9a9cff693c5886943753a741
@@ -7,8 +7,8 @@ metadata:
     github-tree-sha: 2a1ad17028306ebe45f0e49703fa28b9b2e7f499
 name: grill-me
 ---
-Interview me relentlessly about every aspect of this plan until we reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one-by-one. For each question, provide your recommended answer.
+この計画のあらゆる側面について、共通認識に到達するまで私に徹底的に質問してください。設計上の意思決定ツリーの各分岐をたどり、意思決定どうしの依存関係を一つずつ解決してください。それぞれの質問について、あなたが推奨する回答も提示してください。
 
-Ask the questions one at a time.
+質問は一度に一つずつ行ってください。
 
-If a question can be answered by exploring the codebase, explore the codebase instead.
+コードベースを調査すれば回答できる質問については、私に質問する代わりにコードベースを調査してください。
