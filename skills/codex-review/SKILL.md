@@ -22,13 +22,13 @@ description: Codex CLIを使用してコードレビューを実行する。未�
 `codex exec review` を実行し、**セッションID（thread_id）を必ず控えます**。再レビューに必要です。
 
 ```bash
-codex exec review --uncommitted --json -o .review/codex-review-last.md > .review/codex-review-last.jsonl
-jq -r 'select(.type=="thread.started") | .thread_id' .review/codex-review-last.jsonl
+codex exec review --uncommitted --json -o .tmp/codex-review-last.md > .tmp/codex-review-last.jsonl
+jq -r 'select(.type=="thread.started") | .thread_id' .tmp/codex-review-last.jsonl
 ```
 
 - `--json` はイベントをJSONL出力する。1行目の `thread.started` に `thread_id` が入る
 - `-o` はレビュー本文（最終メッセージ）をファイルに書き出す。結果はこのファイルから読む
-- 得られた `thread_id` は会話中ずっと保持する。`.review/codex-review-last.jsonl` にも残るため後から復元できる
+- 得られた `thread_id` は会話中ずっと保持する。`.tmp/codex-review-last.jsonl` にも残るため後から復元できる
 
 ### レビュー対象の指定
 
@@ -47,7 +47,7 @@ jq -r 'select(.type=="thread.started") | .thread_id' .review/codex-review-last.j
 
 ```bash
 codex exec resume "$THREAD_ID" -c sandbox_mode='"read-only"' \
-  -o .review/codex-review-rereview.md \
+  -o .tmp/codex-review-rereview.md \
   "指摘に対応しました。現在の未コミット変更を再レビューしてください。
 前回の各指摘について 解消 / 部分的 / 未解消 のいずれかを判定し、
 加えて今回の修正で新たに混入した問題があれば指摘してください。"
@@ -64,7 +64,7 @@ codex exec resume "$THREAD_ID" -c sandbox_mode='"read-only"' \
 以下を**上から1回ずつ試し、成功した時点で打ち切る**。ここで代替手段を探し回らないこと。
 
 1. 会話中に控えた `thread_id` を使う
-2. 無ければ `jq -r 'select(.type=="thread.started") | .thread_id' .review/codex-review-last.jsonl` で復元する
+2. 無ければ `jq -r 'select(.type=="thread.started") | .thread_id' .tmp/codex-review-last.jsonl` で復元する
 3. それでも取れない、または `codex exec resume` がエラーになったら、**セッション継続を諦めて「初回レビュー」の手順を新規に実行する**。前回の指摘は自分のコンテキストに残っているので、新しいレビュー結果と突き合わせて解消状況を判断すればよい
 
 `codex exec resume --last` や `~/.codex/sessions` の走査は使わない。誤ったセッションを掴んでも失敗が表面化せず、誤った再レビュー結果になるため。
