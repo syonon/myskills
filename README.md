@@ -10,6 +10,8 @@
 
 1 PR で収まる変更は `implementation-plans` から始める。`docs/work/` は作業用で、PR 作成前に Issue へ転記して削除する。
 
+設計、実装、デバッグの判断は `principles` を参照する。原則の索引と本文 20 個をまとめたもので、各ワークフロー Skill から場面ごとに参照する。原則は [cursor/plugins の pstack](https://github.com/cursor/plugins/tree/main/pstack)（MIT License）を日本語に訳したもの。
+
 ## skillのインストール
 
 ```bash

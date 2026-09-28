@@ -35,6 +35,8 @@ description: 1つのPRについて、確定仕様、設計判断、構成、テ�
 - コンポーネント間の責務と、その間のインターフェースをどう定めるか
 - 各振る舞いをどの境界で検証するか
 
+設計判断と構成を詰めるときは `principles` Skill の索引を参照する。特に foundational-thinking、model-the-domain、boundary-discipline、subtract-before-you-add、redesign-from-first-principles が当てはまることが多い。
+
 ## 質問の仕方
 
 - 選択肢を提示するときは概要だけでなくトレードオフを説明し、推奨案を示す。

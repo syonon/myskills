@@ -30,6 +30,7 @@ description: ざっくりやりたいことを共有された段階で使う。�
 - 振る舞いを変えない準備リファクタリングは、先行する別 PR にする。
 - 不確実性が高いもの、他の PR の前提になるものを先にする。
 - 1 つの PR に含まれる確定仕様が 10 を超えそうなら分割する。
+- PR の順序は `principles` Skill の sequence-verifiable-units と subtract-before-you-add に従う。
 
 ## 機能スペックのテンプレート
 

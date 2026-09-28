@@ -24,6 +24,11 @@ description: docs/work/exec-plans の実装計画書に従い、タスクごと�
 - テストを通すために期待値を変えない。
 - 計画書にない仕様を実装しない。
 - テスト設計から逸脱する場合は理由をコミットメッセージに残す。実装中に不要と分かったテストは消してよく、足りないと分かったテストは仕様に紐づく限り足してよい。
+- `principles` Skill の索引を参照し、該当する原則を適用する。特に次の場面では必ず本文を読む。
+  - テストを書く・変える: test-behavior-not-implementation
+  - REFACTOR: laziness-protocol、minimize-reader-load
+  - 想定外の失敗を調べる: fix-root-causes。同じ前提の修正が 2 回失敗したら attack-the-premise
+  - タスクの完了を判断する: prove-it-works
 
 ## 仕様とのずれに気づいたら
 
